@@ -22,6 +22,12 @@ inputs:
   commitish:
     description: 'Any branch or commit SHA the Git tag is created from, unused if the Git tag already exists. Default: SHA of current commit'
     required: false
+  repo_name:
+    description: 'Change to another repository. Default: current repository'
+    required: false
+  owner_name:
+    description: 'Change to another github owner. Default: current repository owner'
+    required: false
 outputs:
   id:
     description: 'The ID of the created Release'
