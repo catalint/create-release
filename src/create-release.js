@@ -7,7 +7,7 @@ async function run() {
     const github = new GitHub(process.env.GITHUB_TOKEN);
 
     // Get owner and repo from context of payload that triggered the action
-    const { owner, repo } = context.repo;
+    let { owner, repo } = context.repo;
 
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const tagName = core.getInput('tag_name', { required: true });
@@ -19,6 +19,8 @@ async function run() {
     const draft = core.getInput('draft', { required: false }) === 'true';
     const prerelease = core.getInput('prerelease', { required: false }) === 'true';
     const commitish = core.getInput('commitish', { required: false }) || context.sha;
+    owner = core.getInput('owner_name', { required: false }) || owner;
+    repo = core.getInput('repo_name', { required: false }) || repo;
 
     // Create a release
     // API Documentation: https://developer.github.com/v3/repos/releases/#create-a-release
