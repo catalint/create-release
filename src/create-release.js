@@ -25,7 +25,8 @@ async function run() {
     // Create a release
     // API Documentation: https://developer.github.com/v3/repos/releases/#create-a-release
     // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-create-release
-    const createReleaseResponse = await github.repos.createRelease({
+    
+    const createReleaseOptions = {
       owner,
       repo,
       tag_name: tag,
@@ -34,7 +35,12 @@ async function run() {
       draft,
       prerelease,
       target_commitish: commitish
-    });
+    };
+    
+    core.info(`Trying to greate release with options: ${createReleaseOptions}`)
+    
+    const createReleaseResponse = await github.repos.createRelease(createReleaseOptions);
+    
 
     // Get the ID, html_url, and upload URL for the created Release from the response
     const {
