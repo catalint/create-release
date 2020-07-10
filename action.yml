@@ -28,9 +28,6 @@ inputs:
   owner_name:
     description: 'Change to another github owner. Default: current repository owner'
     required: false
-  token:
-    description: 'Use this github token. Default: the one in secrets.GITHUB_TOKEN '
-    required: false
 outputs:
   id:
     description: 'The ID of the created Release'
